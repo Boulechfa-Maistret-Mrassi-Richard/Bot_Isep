@@ -14,7 +14,7 @@ client.on('message', msg => {
 
   // If message is hello, post hello too
   if (msg.content === 'hello') {
-    msg.channel.sendMessage('Hello to you too, fellow !')
+    msg.channel.sendMessage('Espèce de sale petiittt !')
   } else if (msg.content === 'Flanders') {
     msg.channel.sendMessage('Dégage ! :O')
   } else if (msg.content === 'Flanders') {
