@@ -12,3 +12,4 @@ test('Example test', t => {
       t.is(res.response.statusCode, 200)
     })
 })
+;
