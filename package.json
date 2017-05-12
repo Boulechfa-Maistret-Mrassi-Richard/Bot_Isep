@@ -20,7 +20,9 @@
   "dependencies": {
     "discord.js": "^11.1.0",
     "eslint-config-standard": "^10.2.1",
-    "node-rest-client-promise": "^2.0.0"
+    "i": "^0.3.5",
+    "node-rest-client-promise": "^2.0.0",
+    "youtube-api": "^2.0.8"
   },
   "devDependencies": {
     "ava": "^0.19.1",

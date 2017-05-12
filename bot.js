@@ -1,4 +1,5 @@
 // je suis Alexandre
+import Youtube from 'youtube-api'
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
@@ -14,10 +15,13 @@ client.on('message', msg => {
 
   // If message is hello, post hello too
   if (msg.content === 'hello') {
-    msg.channel.sendMessage('Espèce de sale petiittt !')
+    msg.channel.sendMessage('Hello to you too, fellow !')
   } else if (msg.content === 'Flanders') {
     msg.channel.sendMessage('Dégage ! :O')
   } else if (msg.content === 'Flanders') {
+    msg.channel.sendMessage('Dégage ! :O')
+  }
+} else if (msg.content === 'Youtube') {
     msg.channel.sendMessage('Dégage ! :O')
   }
 })
