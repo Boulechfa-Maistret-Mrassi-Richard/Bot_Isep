@@ -19,7 +19,7 @@ client.on('message', msg => {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
 
-  if (msg.content === 'googletranslate') {
+  if (msg.content === '!translate') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
 })
