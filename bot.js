@@ -18,6 +18,10 @@ client.on('message', msg => {
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
+
+  if (msg.content === 'googletranslate') {
+    msg.channel.sendMessage('Hello to you too, fellow !')
+  }
 })
 
 client.login(config.token)
