@@ -16,5 +16,5 @@ client.on('message', msg => {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
 })
-
+)
 client.login(config.token)
