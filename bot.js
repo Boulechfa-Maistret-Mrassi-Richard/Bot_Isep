@@ -20,7 +20,7 @@ client.on('message', msg => {
   }
 
   if (msg.content === '!translate') {
-    msg.channel.sendMessage('Hello to you too, fellow !')
+    msg.channel.sendMessage('On va traduire un mot!!')
   }
 })
 
