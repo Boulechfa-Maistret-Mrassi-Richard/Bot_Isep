@@ -18,6 +18,13 @@ client.on('message', msg => {
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
+  if (msg.content === 'trouve moi le morceau') {
+    msg.channel.sendMessage(' api')
+  }
+// success message
+  if (msg.content === 'ambiance moi :') {
+    msg.channel.sendMessage(' api + sapé commme jamais')
+  }
 })
 
 client.login(config.token)
