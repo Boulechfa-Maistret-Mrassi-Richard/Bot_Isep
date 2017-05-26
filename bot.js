@@ -4,6 +4,9 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
+var translate = require('@google-cloud/translate')({
+  key: 'AIzaSyDMVnVtOABpSFj_P3BT8CmlBep2uDaZloQ'
+})
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
@@ -19,8 +22,16 @@ client.on('message', msg => {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
 
-  if (msg.content === '!translate') {
-    msg.channel.sendMessage('On va traduire un mot!!')
+  if (msg.content.match(/!translate.*/)) {
+    var contenu = msg.content
+    var langue = msg.content.substring(11, 13)
+    translate.translate(contenu.substring(13), langue, function (err, translation) {
+      if (!err) {
+        msg.channel.sendMessage(translation)
+      } else {
+        console.log(err)
+      }
+    })
   }
 })
 
