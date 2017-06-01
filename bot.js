@@ -1,6 +1,3 @@
-// je suis Alexandre
-// je suis Anis le bg du gang le bg
-
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
