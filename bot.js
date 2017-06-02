@@ -43,7 +43,7 @@ client.on('message', msg => {
       var tweet = {
         status: post
       }
-      TwitterAccount.post('statuses/update', tweet, tweeted)
+      TwitterAccount.post('statuses/update', tweet,  tweeted)
       /*eslint-disable */
       function tweeted(err, data, response) {
       /*eslint-enable*/
@@ -55,6 +55,13 @@ client.on('message', msg => {
       }
     }
   }
+})
+
+// Recherche de tweet où "ALex59700" est identifié
+var stream = TwitterAccount.stream('statuses/filter', {track: 'ALex59700' })
+stream.on('tweet', function (tweet) {
+  // Envoi sur la chaine "Boulechfar-Maistret-Mrassi-Richard"
+   client.channels.find('id','307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "'+ tweet.text +'"')
 })
 
 client.login(config.token)
