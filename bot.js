@@ -1,9 +1,10 @@
 // je suis Alexandre
-// je suis Anis le bg du gang le bg
+// je suis Anis
 
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
+var spotify = require('spotify')
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
@@ -18,12 +19,15 @@ client.on('message', msg => {
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
-  if (msg.content === 'trouve moi le morceau') {
-    msg.channel.sendMessage(' api')
-  }
-// success message
-  if (msg.content === 'ambiance moi :') {
-    msg.channel.sendMessage(' api + sapé commme jamais')
+  if (msg.content.match(/!spotify.*/)) {
+    var artistename = msg.content.substring(9)
+
+    spotify.search({ type: 'track', query: artistename }, function (err, data) {
+      if (!err) {
+        msg.channel.sendMessage('résultat morceau :' + data)
+        // o est le 1er terme
+      }
+    })
   }
 })
 
