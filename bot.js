@@ -41,10 +41,13 @@ client.on('message', msg => {
     var ville = msg.content.substring(9)
     var urlmeteo = 'http://api.openweathermap.org/data/2.5/weather?q=' + ville + '&APPID=3054b2798248ff002957afc8655a64db'
     httpClient.getPromise(urlmeteo)
-    .then(res => {
-      console.log(JSON.stringify())
-      // msg.channel.sendMessage(res)
+    /* .then(res => {
+      console.log(JSON.stringify(urlmeteo, null, 2))
+      msg.channel.sendMessage(urlmeteo)
       // console.log(res.response.statusCode)
+    }) */
+    .then(function (result) {
+      msg.channel.sendMessage(JSON.stringify(result, null, 2))
     })
     .catch(err => {
       console.log(err)
@@ -54,16 +57,22 @@ client.on('message', msg => {
 
   if (msg.content.match(/!youtube.*/)) {
     var titre = msg.content.substring(9)
-    youtube.search(titre, 3, function (error, result) {
+    var i = 0
+    var j = 0
+    youtube.search(titre, 5, function (error, result) {
       if (error) {
         console.log(error)
       } else {
-        /* var retour = JSON.stringify(result, null, 2)
-        msg.channel.sendMessage(retour) */
-        // console.log(JSON.stringify(result.items[0].snippet.title, null, 2))
-        msg.channel.sendMessage(JSON.stringify(result.items[0].snippet.title, null, 2))
-        msg.channel.sendMessage(JSON.stringify(result.items[1].snippet.title, null, 2))
-        msg.channel.sendMessage(JSON.stringify(result.items[2].snippet.title, null, 2))
+        // console.log(JSON.stringify(result, null, 2))
+        while (i < 3) {
+          if (JSON.stringify(result.items[j].id.kind, null, 2).match(/video/)) {
+            // msg.channel.sendMessage('test')
+            var lien = ', "lien : https://www.youtube.com/watch?v=' + JSON.stringify(result.items[j].id.videoId, null, 2).substring(1)
+            msg.channel.sendMessage('Vidéo ' + (i + 1) + ' : ' + JSON.stringify(result.items[j].snippet.title, null, 2) + lien)
+            i = i + 1
+          }
+          j = j + 1
+        }
       }
     })
   }
