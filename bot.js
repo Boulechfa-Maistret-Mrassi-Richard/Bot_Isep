@@ -40,19 +40,23 @@ client.on('message', msg => {
   if (msg.content.match(/!weather.*/)) {
     var ville = msg.content.substring(9)
     var urlmeteo = 'http://api.openweathermap.org/data/2.5/weather?q=' + ville + '&APPID=3054b2798248ff002957afc8655a64db'
-    httpClient.getPromise(urlmeteo)
+    httpClient.getPromise(urlmeteo, function (result, error) {
+      if (result) {
+        console.log(result)
+        msg.channel.sendMessage('A ' + JSON.stringify(result.name, null, 2) + ', il fait ' + Math.round(JSON.stringify(result.main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.weather[0].description, null, 2))
+      } else {
+        console.log(error)
+      }
+    })
     /* .then(res => {
-      console.log(JSON.stringify(urlmeteo, null, 2))
+      console.log(JSON.stringify(, null, 2))
       msg.channel.sendMessage(urlmeteo)
       // console.log(res.response.statusCode)
-    }) */
-    .then(function (result) {
-      msg.channel.sendMessage(JSON.stringify(result, null, 2))
     })
     .catch(err => {
       console.log(err)
       throw err
-    })
+    }) */
   }
 
   if (msg.content.match(/!youtube.*/)) {
