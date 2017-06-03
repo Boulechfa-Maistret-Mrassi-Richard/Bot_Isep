@@ -57,8 +57,7 @@ client.on('message', msg => {
     youtube.search(titre, 3, function (error, result) {
       if (error) {
         console.log(error)
-      }
-      else {
+      } else {
         /* var retour = JSON.stringify(result, null, 2)
         msg.channel.sendMessage(retour) */
         // console.log(JSON.stringify(result.items[0].snippet.title, null, 2))
