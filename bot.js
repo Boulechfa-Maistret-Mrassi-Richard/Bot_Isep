@@ -57,14 +57,14 @@ client.on('message', msg => {
   }
 })
 
-// Recherche de tweet où "ALex59700" est identifié
-var stream = TwitterAccount.stream('statuses/filter', {track: 'ALex59700' })
+// Recherche de tweet où "Alex59700" est identifié
+var stream = TwitterAccount.stream('statuses/filter', {track: 'Alex59700' })
 stream.on('tweet', function (tweet) {
   // Envoi sur la chaine "Boulechfar-Maistret-Mrassi-Richard"
    client.channels.find('id','307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "'+ tweet.text +'"')
 })
 
-client.login(config.token)
+
 //Correspond au ID du compte Alex59700
 var IDtwitter = '870358942123253760'
 
@@ -77,3 +77,5 @@ var stream = TwitterAccount.stream('statuses/filter', { follow: ( IDtwitter ) })
 		}
       return
 	});
+
+client.login(config.token)
