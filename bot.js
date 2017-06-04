@@ -17,7 +17,7 @@ client.on('message', msg => {
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
-  if (msg.content.match(/!spotify track.*/)) {
+  if (msg.content.match(/!spotify.*/)) {
     var infovaleur = msg.content.substring(9)
 
     spotify.search({ type: 'track', query: infovaleur }, function (err, data) {
