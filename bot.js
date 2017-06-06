@@ -10,6 +10,8 @@ var translate = require('@google-cloud/translate')({
 var Youtube = require('youtube-node')
 var youtube = new Youtube()
 youtube.setKey('AIzaSyAJTJfBHFK9CSXVJDO0T2ZIJGrE0s69sf0')
+var Deezer = require('deezer-node-api')
+var dz = new Deezer()
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
@@ -42,21 +44,30 @@ client.on('message', msg => {
     var urlmeteo = 'http://api.openweathermap.org/data/2.5/weather?q=' + ville + '&APPID=3054b2798248ff002957afc8655a64db'
     httpClient.getPromise(urlmeteo, function (result, error) {
       if (result) {
-        console.log(result)
+        // console.log(result)
         msg.channel.sendMessage('A ' + JSON.stringify(result.name, null, 2) + ', il fait ' + Math.round(JSON.stringify(result.main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.weather[0].description, null, 2))
       } else {
         console.log(error)
       }
     })
-    /* .then(res => {
-      console.log(JSON.stringify(, null, 2))
-      msg.channel.sendMessage(urlmeteo)
-      // console.log(res.response.statusCode)
+  }
+
+  if (msg.content.match(/!forecast.*/)) {
+    var villeforecast = msg.content.substring(10)
+    var urlmeteoforecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + villeforecast + '&mode=json&APPID=3054b2798248ff002957afc8655a64db'
+    httpClient.getPromise(urlmeteoforecast, function (result, error) {
+      if (result) {
+        console.log(result)
+        msg.channel.sendMessage('A ' + JSON.stringify(result.city.name, null, 2))
+        msg.channel.sendMessage('Aujourd hui, il fait ' + Math.round(JSON.stringify(result.list[0].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[0].weather[0].description, null, 2))
+        msg.channel.sendMessage('J + 1, il fait ' + Math.round(JSON.stringify(result.list[8].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[8].weather[0].description, null, 2))
+        msg.channel.sendMessage('J + 2, il fait ' + Math.round(JSON.stringify(result.list[16].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[16].weather[0].description, null, 2))
+        msg.channel.sendMessage('J + 3, il fait ' + Math.round(JSON.stringify(result.list[24].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[24].weather[0].description, null, 2))
+        msg.channel.sendMessage('J + 4, il fait ' + Math.round(JSON.stringify(result.list[32].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[32].weather[0].description, null, 2))
+      } else {
+        console.log(error)
+      }
     })
-    .catch(err => {
-      console.log(err)
-      throw err
-    }) */
   }
 
   if (msg.content.match(/!youtube.*/)) {
@@ -70,13 +81,24 @@ client.on('message', msg => {
         // console.log(JSON.stringify(result, null, 2))
         while (i < 3) {
           if (JSON.stringify(result.items[j].id.kind, null, 2).match(/video/)) {
-            // msg.channel.sendMessage('test')
             var lien = ', "lien : https://www.youtube.com/watch?v=' + JSON.stringify(result.items[j].id.videoId, null, 2).substring(1)
             msg.channel.sendMessage('Vidéo ' + (i + 1) + ' : ' + JSON.stringify(result.items[j].snippet.title, null, 2) + lien)
             i = i + 1
           }
           j = j + 1
         }
+      }
+    })
+  }
+
+  if (msg.content.match(/!deezer.*/)) {
+    var recherchedeezer = msg.content.substring(8)
+    var k = 0
+    dz.findTracks(recherchedeezer).then(function (result) {
+      msg.channel.sendMessage('Les trois morceaux correspondants sont :')
+      while (k < 3) {
+        msg.channel.sendMessage('Morceau ' + (k + 1) + ' : ' + JSON.stringify(result.data[k].title, null, 2) + ', lien :' + JSON.stringify(result.data[k].link, null, 2) + ' .')
+        k = k + 1
       }
     })
   }
