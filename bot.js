@@ -57,7 +57,7 @@ client.on('message', msg => {
     var urlmeteoforecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + villeforecast + '&mode=json&APPID=3054b2798248ff002957afc8655a64db'
     httpClient.getPromise(urlmeteoforecast, function (result, error) {
       if (result) {
-        console.log(result)
+        // console.log(result)
         msg.channel.sendMessage('A ' + JSON.stringify(result.city.name, null, 2))
         msg.channel.sendMessage('Aujourd hui, il fait ' + Math.round(JSON.stringify(result.list[0].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[0].weather[0].description, null, 2))
         msg.channel.sendMessage('J + 1, il fait ' + Math.round(JSON.stringify(result.list[8].main.temp, null, 2) - 273.15) + ' degrès, et la météo est ' + JSON.stringify(result.list[8].weather[0].description, null, 2))
@@ -99,6 +99,20 @@ client.on('message', msg => {
       while (k < 3) {
         msg.channel.sendMessage('Morceau ' + (k + 1) + ' : ' + JSON.stringify(result.data[k].title, null, 2) + ', lien :' + JSON.stringify(result.data[k].link, null, 2) + ' .')
         k = k + 1
+      }
+    })
+  }
+
+  if (msg.content.match(/!pokemon.*/)) {
+    var pokerecherche = msg.content.substring(9)
+    var urlpokemon = 'http://pokeapi.co/api/v2/pokemon/' + pokerecherche
+    httpClient.getPromise(urlpokemon, function (result, error) {
+      if (result) {
+        // console.log(result)
+        msg.channel.sendMessage("Bonjour! Je m'appelle : " + JSON.stringify(result.forms[0].name, null, 2) + ', je suis le pokemon numéro ' + JSON.stringify(result.id, null, 2) + '! Je suis un pokemon de type ' + JSON.stringify(result.types[0].type.name, null, 2) + '! Je mesure ' + JSON.stringify(result.height, null, 2) + ' pieds et pèse ' + JSON.stringify(result.weight, null, 2) + ' pounds!')
+        // client.channel.setName('test')
+      } else {
+        console.log(error)
       }
     })
   }
