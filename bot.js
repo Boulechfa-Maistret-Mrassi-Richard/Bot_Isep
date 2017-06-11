@@ -14,6 +14,8 @@ var Deezer = require('deezer-node-api')
 var dz = new Deezer()
 
 client.on('ready', () => {
+  // client.user.setUsername('bot_thomas')
+  // client.user.setAvatar('http://www.media-tchat.org/tchat-media/wp-content/uploads/2014/09/fond-bleu.jpg')
   console.log(`Logged in as ${client.user.username}!`)
 })
 
@@ -109,11 +111,13 @@ client.on('message', msg => {
     httpClient.getPromise(urlpokemon, function (result, error) {
       if (result) {
         // console.log(result)
+        var newnamebot = JSON.stringify(result.forms[0].name, null, 2).substring(1, JSON.stringify(result.forms[0].name, null, 2).length - 1)
+        var lienpicture = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + JSON.stringify(result.id, null, 2) + '.png'
+        client.user.setAvatar(lienpicture)
+        client.user.setUsername(newnamebot)
+        .then(user => console.log(`My new username is ${user.username}`))
+        .catch(console.error)
         msg.channel.sendMessage("Bonjour! Je m'appelle : " + JSON.stringify(result.forms[0].name, null, 2) + ', je suis le pokemon numéro ' + JSON.stringify(result.id, null, 2) + '! Je suis un pokemon de type ' + JSON.stringify(result.types[0].type.name, null, 2) + '! Je mesure ' + JSON.stringify(result.height, null, 2) + ' pieds et pèse ' + JSON.stringify(result.weight, null, 2) + ' pounds!')
-        // client.channel.setName('test')
-        // msg.channel.setName('test')
-        // console.log(`Channel's new name is ${msg.channel.name}`)
-        // console.log(`resultat ${user.username}`)
       } else {
         console.log(error)
       }
