@@ -111,7 +111,9 @@ client.on('message', msg => {
         // console.log(result)
         msg.channel.sendMessage("Bonjour! Je m'appelle : " + JSON.stringify(result.forms[0].name, null, 2) + ', je suis le pokemon numéro ' + JSON.stringify(result.id, null, 2) + '! Je suis un pokemon de type ' + JSON.stringify(result.types[0].type.name, null, 2) + '! Je mesure ' + JSON.stringify(result.height, null, 2) + ' pieds et pèse ' + JSON.stringify(result.weight, null, 2) + ' pounds!')
         // client.channel.setName('test')
-        msg.channel.setName('test')
+        // msg.channel.setName('test')
+        // console.log(`Channel's new name is ${msg.channel.name}`)
+        // console.log(`resultat ${user.username}`)
       } else {
         console.log(error)
       }
