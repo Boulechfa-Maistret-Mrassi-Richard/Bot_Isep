@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/pierrick.bignet/cloud-discord-bot.git"
+    "url": "git+ssh://git@github.com/Boulechfa-Maistret-Mrassi-Richard/Bot_Isep.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/pierrick.bignet/cloud-discord-bot/issues"
+    "url": "https://github.com/Boulechfa-Maistret-Mrassi-Richard/Bot_Isep/issues"
   },
-  "homepage": "https://gitlab.com/pierrick.bignet/cloud-discord-bot#README",
+  "homepage": "https://github.com/Boulechfa-Maistret-Mrassi-Richard/Bot_Isep/",
   "dependencies": {
     "@google-cloud/translate": "^0.8.2",
     "deezer-node-api": "^0.2.2",
