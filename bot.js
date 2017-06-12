@@ -2,49 +2,52 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
-var spotify = require('spotify')
-
+// il faut faire npm install spotify-web-api-node
+var Spotifywebapinode = require('spotify-web-api-node')
+var spotifyWebApiNode = new Spotifywebapinode({
+  // i created an application on spotify developer
+  clientId: '9eebb5a810f144499c2ba420035fe63d',
+  clientSecret: '3c5b4032ffe04793ba970f400cf28dc5'
+})
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
 })
 
 client.on('message', msg => {
-  // Check if the message has been posted in a channel where the bot operates
-  // and that the author is not the bot itself
   if (msg.channel.type !== 'dm' && (!config.channels[msg.channel.id] || msg.author.id === client.user.id)) return
 
-  // If message is hello, post hello too
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
   }
-  if (msg.content.match(/!spotify.*/)) {
-    var infovaleur = msg.content.substring(9)
-
-    spotify.search({ type: 'track', query: infovaleur }, function (err, data) {
-      if (!err) {
-        msg.channel.sendMessage('résultat track le premier le plus proban :' + data.tracks.items[0].external_urls.spotify)
-        msg.channel.sendMessage('résultat track le second le plus proban :' + data.tracks.items[1].external_urls.spotify)
-        msg.channel.sendMessage('résultat track le troisième le plus proban :' + data.tracks.items[2].external_urls.spotify)
-        // o est le 1er terme
-      }
-    })
-    spotify.search({ type: 'album', query: infovaleur }, function (err, data) {
-      if (!err) {
-        msg.channel.sendMessage('résultat album le premier le plus proban :' + data.albums.items[0].external_urls.spotify)
-        msg.channel.sendMessage('résultat album le second le plus proban :' + data.albums.items[1].external_urls.spotify)
-        msg.channel.sendMessage('résultat album le troisième le plus proban :' + data.albums.items[2].external_urls.spotify)
-        // o est le 1er terme
-      }
-    })
-    spotify.search({ type: 'artist', query: infovaleur }, function (err, data) {
-      if (!err) {
-        msg.channel.sendMessage('résultat artist le premier le plus proban :' + data.artists.items[0].external_urls.spotify)
-        msg.channel.sendMessage('résultat artist le second le plus proban :' + data.artists.items[1].external_urls.spotify)
-        msg.channel.sendMessage('résultat artist le troisième le plus proban :' + data.artists.items[2].external_urls.spotify)
-        // o est le 1er terme
-      }
-    })
-  }
+  spotifyWebApiNode.clientCredentialsGrant()
+          .then(function (data) {
+            spotifyWebApiNode.setAccessToken(data.body['access_token'])
+            if (msg.content.match(/!spotify track.*/)) {
+              var chansson = msg.content.substring(15)
+              spotifyWebApiNode.searchTracks(chansson)
+              .then(function (data) {
+                msg.channel.sendMessage('Résultats probant numéro 1 pour la recherche track' + data.body.tracks.items[0].external_urls.spotify)
+                msg.channel.sendMessage('Résultats probant numéro 2 pour la recherche track' + data.body.tracks.items[1].external_urls.spotify)
+                msg.channel.sendMessage('Résultats probant numéro 3 pour la recherche track' + data.body.tracks.items[2].external_urls.spotify)
+              })
+            } else if (msg.content.match(/!spotify artist.*/)) {
+              var artiste = msg.content.substring(16)
+              spotifyWebApiNode.searchArtists(artiste)
+              .then(function (data) {
+                msg.channel.sendMessage('Résultats  probant numéro 1 pour la recherche artiste ' + data.body.artists.items[0].external_urls.spotify)
+                msg.channel.sendMessage('Résultats  probant numéro 2 pour la recherche artiste ' + data.body.artists.items[1].external_urls.spotify)
+                msg.channel.sendMessage('Résultats  probant numéro 3 pour la recherche artiste ' + data.body.artists.items[2].external_urls.spotify)
+              })
+            } else if (msg.content.match(/!spotify album.*/)) {
+              var album = msg.content.substring(15)
+              spotifyWebApiNode.searchAlbums(album)
+              .then(function (data) {
+                msg.channel.sendMessage('Résultats  probant numéro 1 pour la recherche album ' + data.body.albums.items[0].external_urls.spotify)
+                msg.channel.sendMessage('Résultats  probant numéro 2 pour la recherche album ' + data.body.albums.items[1].external_urls.spotify)
+                msg.channel.sendMessage('Résultats  probant numéro 3 pour la recherche album ' + data.body.albums.items[2].external_urls.spotify)
+              })
+            }
+          })
 })
 
 client.login(config.token)
