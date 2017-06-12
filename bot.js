@@ -45,7 +45,9 @@ client.on('message', msg => {
         status: post
       }
       TwitterAccount.post('statuses/update', tweet,  tweeted)
+      /*eslint-disable*/
       function tweeted(err, data, response) {
+      /*eslint-enable*/
         if (err) {
           msg.channel.sendMessage('Tweet non envoyé. Une erreur est survenue.')
         } else {
