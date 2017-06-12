@@ -35,7 +35,6 @@ client.on('message', msg => {
   }
 
   // Tweet non vide ->  autorisé
-  /*eslint-disable*/
   if (msg.content === '!tweet ' + post) {
     // Si tweet plus de 140 caractères, tweet refusé
     if (post.length > 140) {
@@ -45,7 +44,9 @@ client.on('message', msg => {
         status: post
       }
       TwitterAccount.post('statuses/update', tweet,  tweeted)
+      /*eslint-disable*/
       function tweeted(err, data, response) {
+      /*eslint-enable*/
         if (err) {
           msg.channel.sendMessage('Tweet non envoyé. Une erreur est survenue.')
         } else {
@@ -76,6 +77,6 @@ var stream = TwitterAccount.stream('statuses/filter', { follow: ( IDtwitter ) })
 		}
       return
 	});
-/*eslint-enable*/
+
 
 client.login(config.token)
