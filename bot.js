@@ -35,7 +35,7 @@ client.on('message', msg => {
   }
 
   // Tweet non vide ->  autorisé
-  /*eslint-disable*/
+
   if (msg.content === '!tweet ' + post) {
     // Si tweet plus de 140 caractères, tweet refusé
     if (post.length > 140) {
@@ -63,7 +63,6 @@ stream.on('tweet', function (tweet) {
    client.channels.find('id','307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "'+ tweet.text +'"')
 })
 
-
 //Correspond au ID du compte Alex59700
 var IDtwitter = '870358942123253760'
 
@@ -76,6 +75,5 @@ var stream = TwitterAccount.stream('statuses/filter', { follow: ( IDtwitter ) })
 		}
       return
 	});
-/*eslint-enable*/
 
 client.login(config.token)
