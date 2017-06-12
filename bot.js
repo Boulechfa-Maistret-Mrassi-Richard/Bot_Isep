@@ -63,9 +63,6 @@ stream.on('tweet', function (tweet) {
   // Envoi sur la chaine "Boulechfar-Maistret-Mrassi-Richard"
    client.channels.find('id','307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "'+ tweet.text +'"')
 })
-<<<<<<< HEAD
-=======
-
 
 //Correspond au ID du compte Alex59700
 var IDtwitter = '870358942123253760'
@@ -80,6 +77,4 @@ var stream = TwitterAccount.stream('statuses/filter', { follow: ( IDtwitter ) })
       return
 	});
 
-
 client.login(config.token)
->>>>>>> 1ae40704e0ef01f1fbcd948b4fb48a63b02c8f85
