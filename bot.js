@@ -209,9 +209,9 @@ stream.on('tweet', function (tweet) {
 // Correspond au ID du compte Alex59700
 var IDtwitter = '870358942123253760'
 
-var stream = TwitterAccount.stream('statuses/filter', { follow: (IDtwitter) })
+var stream2 = TwitterAccount.stream('statuses/filter', { follow: (IDtwitter) })
 
-stream.on('tweet', function (tweet) {
+stream2.on('tweet', function (tweet) {
 // Compare l'ID inscrit ci-dessus et si il est bon c'est que le compte associé a publié un tweet
 /*eslint-disable*/
   if (tweet.user.id == IDtwitter) {
