@@ -1,11 +1,9 @@
-// je suis anis
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
-// il faut faire npm install spotify-web-api-node
+
 var Spotifywebapinode = require('spotify-web-api-node')
 var spotifyWebApiNode = new Spotifywebapinode({
-  // i created an application on spotify developer
   clientId: '9eebb5a810f144499c2ba420035fe63d',
   clientSecret: '3c5b4032ffe04793ba970f400cf28dc5'
 })
