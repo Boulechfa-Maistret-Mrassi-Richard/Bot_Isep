@@ -31,16 +31,16 @@ la météo du jour.
 Taper "!forecast ville", en remplaçant "ville" par le nom de la ville dont vous souhaitez obtenir
 la météo pour les 5 jours.
 ### Youtube :
-Taper "!youtube ma_rechercher", en remplaçant "ma_recherche" par le nom de ce que vous souhaitez chercher sur youtube.
+Taper "!youtube ma_recherche", en remplaçant "ma_recherche" par le nom de ce que vous souhaitez chercher sur youtube.
 ### Deezer (bot ajouté pour faire des tests de comparaison avec Spotify) :
 Taper "!deezer morceau", en remplaçant "morceau"
 par le nom du morceau que vous souhaitez chercher sur deezer.
 ### Pokemon :
 Taper "!pokemon nom_pokemon", en remplaçant "nom_pokemon" par le nom en anglais du pokemon dont vous souhaitez avoir les infos.
 ### Tweeter :
-Taper "!tweet votre_tweet", en remplaçant "votre_tweet" par ce que vous souhaitez poster sur tweeter.  Lorsque que quelqu'un
-identifie le compte tweeter dan un tweet, une notification est envoyée sur le channel boulefchar-maistret-mrassi-richard. Idem lorsque que
-l'on publie un tweet sur ce compte.
+Taper "!tweet votre_tweet", en remplaçant "votre_tweet" par ce que vous souhaitez poster sur tweeter.
+Lorsque que quelqu'un identifie le compte tweeter dan un tweet, une notification est envoyée sur le channel boulefchar-maistret-mrassi-richard.
+Idem lorsque que l'on publie un tweet sur ce compte.
 
 URL du compte Twitter associé : [Alex59700](https://twitter.com/Alex59700)
 
