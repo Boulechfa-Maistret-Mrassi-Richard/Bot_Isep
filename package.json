@@ -24,6 +24,7 @@
     "eslint-config-standard": "^10.2.1",
     "google-translate-api": "^2.2.2",
     "node-rest-client-promise": "^2.0.0"
+    "spotify-web-api-js": "^0.22.0"
   },
   "devDependencies": {
     "ava": "^0.19.1",
