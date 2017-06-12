@@ -19,7 +19,7 @@ var spotifyWebApiNode = new Spotifywebapinode({
   clientSecret: '3c5b4032ffe04793ba970f400cf28dc5'
 })
 client.on('ready', () => {
-  // client.user.setUsername('bot_thomas')
+  client.user.setUsername('bot_thomas')
   // client.user.setAvatar('http://www.media-tchat.org/tchat-media/wp-content/uploads/2014/09/fond-bleu.jpg')
   console.log(`Logged in as ${client.user.username}!`)
 })
