@@ -33,4 +33,6 @@ Taper "!pokemon nom_pokemon", en remplaçant "nom_pokemon" par le nom en anglais
 Taper "!tweet votre_tweet", en remplaçant "votre_tweet" par ce que vous souhaitez poster sur tweeter.  Lorsque que quelqu'un
 identifie le compte tweeter dan un tweet, une notification est envoyée sur le channel boulefchar-maistret-mrassi-richard. Idem lorsque que
 l'on publie un tweet sur ce compte.
+### Spotify :
+Taper "!spotify track ma_recherche", en remplaçant "ma_recherche" par le morceau que vous souhaitez chercher. Vous pouvez remplacer "track" par "album" ou "artist" pour chercher un album ou un artiste.
 
