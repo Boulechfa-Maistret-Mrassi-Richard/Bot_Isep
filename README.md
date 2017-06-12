@@ -11,6 +11,14 @@ Travail en groupe pour le module Architecture des SI
 
 ## URL Web App Azure :
 http://bot-thomas-alex-anis-amira.azurewebsites.net
+(fonctionnait lors du paramètrage du bot et lors des premiers essais, mais d=ne fonctionne plus depuis 2 jours, peut-être du à l'annonce de la fin proche de la période d'essai)
+
+## Node Modules à installer pour utilisation locale :
+* spotify-web-api-node
+* twit
+* @google-cloud/translate
+* youtube-node
+* deezer-node-api
 
 ## Commandes pour exécuter les bots :
 ### Google Translate :
