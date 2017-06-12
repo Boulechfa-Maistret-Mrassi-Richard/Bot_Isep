@@ -150,7 +150,7 @@ client.on('message', msg => {
       var tweet = {
         status: post
       }
-      TwitterAccount.post('statuses/update', tweet,  tweeted)
+      TwitterAccount.post('statuses/update', tweet, tweeted)
       /*eslint-disable*/
       function tweeted(err, data, response) {
       /*eslint-enable*/
@@ -165,23 +165,22 @@ client.on('message', msg => {
 })
 
 // Recherche de tweet où "Alex59700" est identifié
-var stream = TwitterAccount.stream('statuses/filter', {track: 'Alex59700' })
+var stream = TwitterAccount.stream('statuses/filter', { track: 'Alex59700' })
 stream.on('tweet', function (tweet) {
   // Envoi sur la chaine "Boulechfar-Maistret-Mrassi-Richard"
-   client.channels.find('id','307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "'+ tweet.text +'"')
+  client.channels.find('id', '307410717294985217').sendMessage('Vous avez été identifiés dans un tweet : "' + tweet.text + '"')
 })
 
-//Correspond au ID du compte Alex59700
+// Correspond au ID du compte Alex59700
 var IDtwitter = '870358942123253760'
 
-var stream = TwitterAccount.stream('statuses/filter', { follow: ( IDtwitter ) });
+var stream2 = TwitterAccount.stream('statuses/filter', { follow: (IDtwitter) })
 
-	stream.on('tweet', function (tweet) {
-		// Compare l'ID inscrit ci-dessus et si il est bon c'est que le compte associé a publié un tweet
-		if (tweet.user.id == IDtwitter) {
-      client.channels.find('id','307410717294985217').sendMessage('Un Tweet a été publié : ' +tweet.text)
-		}
-      return
-	});
+stream2.on('tweet', function (tweet) {
+// Compare l'ID inscrit ci-dessus et si il est bon c'est que le compte associé a publié un tweet
+  if (tweet.user.id === IDtwitter) {
+    client.channels.find('id', '307410717294985217').sendMessage('Un Tweet a été publié : ' + tweet.text)
+  }
+})
 
 client.login(config.token)
